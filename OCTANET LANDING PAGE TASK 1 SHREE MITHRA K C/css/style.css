@@ -1,0 +1,696 @@
+/*COMMON PROPERTIES*/
+body
+{
+	font-family: calibri;
+}
+
+p
+{
+	font-weight: bold;
+	color: #989898;
+	font-size: 10pt;
+	font-family:sans-serif;
+}
+
+button,#healthyEating>a
+{
+	border: 2px solid #00ABED;
+	background-color: #00ABED;
+	color: white;
+	padding: 10px 75px;
+	margin-top: 10px;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+button:hover,#healthyEating>a:hover
+{
+	background-color: transparent;
+	color: #00ABED;
+}
+
+h2,h3
+{
+	color: #0B5079;
+	font-weight: bold;
+}
+
+h2
+{
+	font-size: 24pt;
+}
+
+h3
+{
+	font-size: 20pt;
+}
+
+#howItWork img:hover,#uniqeMeals img:hover,.fish img:hover
+{
+   	filter:contrast(150%);
+}
+
+/*NAVIGATION BAR*/
+#navbar .navbar-header
+{
+	border-right: 2px solid #E2E9EF;
+}
+
+#navbar .navbar-header img
+{
+	width: 150px;
+	height: 70px;
+	margin: 10px 45px 10px 25px;
+}
+
+#navbar button
+{
+	margin-top: 20px;
+	border: 2px solid #0D4F7C;
+	background-color:white;
+}
+
+#navbar button .icon-bar
+{
+	background-color:#0D4F7C;
+}
+
+#myNavbar
+{
+	margin-top: 20px;
+	font-weight: bold
+}
+
+#myNavbar a
+{
+	font-size: 13pt;
+}
+
+#myNavbar>ul:first-child 
+{
+	margin-left: 30px;
+	color: #0D4F7B;
+}
+
+#myNavbar>ul:first-child a
+{
+	color: #324556;
+}
+
+#myNavbar .navbar-right>li:first-child>a:after
+{
+ 	content:' | ';
+ 	color: #757F8C;
+}
+
+#myNavbar .navbar-right>li:first-child>a
+{
+	padding-right:0;
+}
+
+#myNavbar .navbar-right>li:nth-child(2)>a
+{
+	padding-left:3px;
+	padding-right: 3px;
+	color: #00ABED;
+}
+
+#myNavbar .navbar-right>li:last-child>a>span
+{
+    font-size: 16pt;
+	color: #00ABED;
+}
+
+#myNavbar .navbar-right>li:last-child>a>span:hover
+{
+	color: black;
+}
+
+#myNavbar li:hover
+{
+	border-bottom: 3px solid #0D4F7C;	
+}
+
+#navbar
+{
+	margin-bottom: 0px;
+}
+
+.affix
+{
+	top: 0;
+	z-index: 9;
+	width: 100%;
+}
+
+/*CAROUSEL*/
+.slideShow
+{
+	position: relative;
+}
+
+.slideShow img
+{
+ 	width: 100%;
+ 	filter: brightness(70%);
+}
+
+.carouselText
+{
+	position: absolute;
+	text-align: center;
+	top: 25%;
+	left: 48%;
+	transform: translateY(-75%);
+	transform: translateX(-50%);
+	color: white;
+}
+
+.carouselText h1
+{
+	font-weight: 600;
+    line-height: 38px;
+    font-size: 52px;
+}
+
+.carouselText>h1:nth-child(2)
+{
+	transform: skewX(-7deg);
+}
+
+/*HOW IT WORK*/
+#howItWork
+{
+	text-align: center;
+	margin: 40px 0px;
+}
+
+/*HEALTHY*/
+#healthy
+{
+	background-image: url("../images/vegitables.jpg");
+	background-size: cover;
+	text-align: center; 
+    background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#counter
+{
+	padding: 75px 0px;
+}
+
+#counter h1
+{
+	font-weight: 600;
+    line-height: 38px;
+    font-size: 50px;
+    color: white;
+}
+
+/*UNIQE HEALTHY MEALS*/
+#uniqeMeals
+{
+	margin-top: 0px;
+	margin-bottom: 100px;
+}
+
+#uniqeMeals h2
+{
+	margin: 2px 0px;
+}
+
+#uniqeMeals p
+{
+	margin: 10px 0px;
+}
+
+#uniqeMeals img
+{
+	width: 100%;
+
+}
+
+.innerUniqeMeals
+{
+	margin-top: 150px;
+	margin-left: 50px;
+}
+
+.innerUniqeImg
+{
+	margin-left: -30px;
+}
+
+/*HEALTHY EATING*/
+#healthyEating
+{
+	text-align: center;
+	margin-bottom: 90px;
+}
+
+#healthyEating>p>a
+{
+	text-decoration: underline;
+	color: #00ABED;
+	
+}
+#healthyEating>p>a:hover
+{
+	
+	color:#0B5079;
+}
+
+#healthyEating>p
+{
+	margin-bottom: 30px;
+}
+
+#healthyEating>a
+{
+	text-decoration: none;
+	color: white;
+	padding: 10px 65px;
+}
+
+/*FOLLOW US*/
+#follow
+{
+ 	background-color: #0B5079;
+ 	padding: 30px 0px;
+ 	text-align: center;
+}
+
+.icons
+{
+	border-right: 2px solid white;
+}
+
+#follow p
+{
+   	color: white;
+}
+
+.icons p,.signUp p,.fromTheBlog p
+{
+	font-size: 12pt;
+}
+
+.icons i
+{
+	background-color: white;
+	color: #0B5079;
+	line-height: 35px;
+	font-size: 16pt;
+}
+
+.icons i:hover
+{
+	border: 2px solid white;
+	border-radius: 100%;
+	background-color: transparent;
+	color: white;
+	line-height: 30px;
+}
+
+.icons span
+{
+	margin: 10px 5px 40px 5px;
+}
+
+.signUp input
+{
+	display: inline-block;
+  	padding: 5px 80px 5px 6px;
+  	font-size: 10pt;
+  	height: 34px;
+}
+
+.signUp button
+{
+	display: inline-block;
+	background-color: #00ABED;
+	color: white;
+	padding: 5px 10px;
+	font-size: 10pt;
+	font-weight: bold;
+	height: 34px;
+}
+
+.fromTheBlog
+{
+	border-left: 2px solid white;
+	padding-bottom: 19px;
+}
+.fish
+{
+	margin-right: -20px; 
+}
+
+.fishText p
+{
+	text-align: left;
+	margin: 10px 0px 10px -10px;
+	font-size: 10pt;
+}
+
+/*FOOTER*/
+footer
+{
+	margin-top: 25px;
+	padding-bottom: 30px;
+}
+
+footer .legend li
+{
+  	list-style-type: none;
+  	line-height: 30px;
+}
+
+footer .legend li>a,footer .customerSupport a
+{
+  	text-decoration: none;
+  	color:  #989898;
+  	font-weight: bold;
+}
+
+.legend li>a:hover,.customerSupport a:hover,.copyRight p>a:hover
+{
+  	color: #00ABED;
+}
+
+footer>div>div>div:first-child
+{
+	border-right: solid 1px #989898;
+	margin-top: 25px;
+}
+
+footer .customerSupport
+{
+	margin:25px 0px 0px 70px;
+}
+
+footer .customerSupport p,footer .copyRight p
+{
+	font-size: 10pt;
+	line-height: 20px;
+}
+
+footer .customerSupport p:first-child
+{
+	color: #16405A;
+}
+
+footer .copyRight
+{
+   	text-align: right;
+   	margin-right:40px; 
+}
+
+footer .copyRight img
+{
+	width: 190px;
+	height: 80px;
+	margin-bottom: 8px;
+}
+
+footer .copyRight p:nth-child(4)
+{
+	font-size: 8pt;
+}
+
+footer .copyRight p:last-child>a:first-child:after
+{
+	content: ' | ';
+}
+
+footer .copyRight p>a
+{
+	text-decoration: none;
+  	color:  #989898;
+  	font-weight: bold;
+}
+
+/*SCROLL TOP ICON*/
+#return-to-top {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    background-color: #00ABED;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-decoration: none;
+    border-radius: 5px 5px 0px 0px;
+    border:2px solid #00ABED;
+    display: none;
+}
+
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 10px;
+    top: 13px;
+    font-size: 19px;
+}
+
+#return-to-top:hover {
+    background-color:transparent;
+}
+
+#return-to-top:hover i {
+    top: 5px;
+    color:#00ABED;
+}
+
+/*MEDIA QUERY*/
+@media screen and (max-width: 1200px)
+{
+ .innerUniqeMeals
+{
+	margin-top: 100px;
+}
+p
+{
+	font-size: 10pt;
+}
+.fishText p
+{
+	margin: 10px 0px 10px 5px;
+}
+footer .copyRight
+{
+   	text-align: right;
+   	margin-right:0; 
+}
+}
+@media screen and (max-width: 1064px)
+{
+	#navbar .navbar-header img
+{
+	width: 100px;
+	height: 50px;
+	margin: 10px;
+}
+#myNavbar
+{
+	margin-top: 10px;
+}
+ #myNavbar>ul:first-child 
+{
+	margin-left: 0px;
+}
+.carouselText h1
+{
+    line-height: 30px;
+    font-size: 46px;
+}
+}
+@media screen and (max-width: 992px)
+{
+ #myNavbar a
+{
+	font-size: 12pt;
+	padding: 7px;
+}
+#myNavbar
+{
+	margin-top: 15px;
+}
+.carouselText h1
+{
+    line-height: 25px;
+    font-size: 40px;
+}
+.innerUniqeMeals
+{
+	text-align: center;
+	margin-top: 50px;
+	margin-left: 0px;
+}
+.innerUniqeImg
+{
+	margin-left:0px;
+}
+#uniqeMeals
+{
+	margin-top: 0px;
+	margin-bottom: 50px;
+}
+.icons
+{
+	border-right: none;
+}
+.fromTheBlog
+{
+	border-left: none;
+	margin: 40px 0px;
+}
+.fish img
+{
+	margin-right: -80px; 
+	width:150px; 
+}
+.fishText p
+{
+	font-size: 12pt;
+	margin: 20px 0px 10px -10px;
+}
+footer .copyRight
+{
+   	text-align:center;
+   	margin-top: 25px;
+}
+}
+@media screen and (max-width:830px)
+{
+	.carouselText h1
+{
+	font-weight: 600;
+    line-height: 10px;
+    font-size: 30px;
+}
+.carouselText button
+{
+	padding: 5px 40px;
+	font-size: 10pt;
+}
+}
+@media screen and (max-width:767px)
+{
+ #myNavbar .navbar-right>li:first-child>a:after
+{
+ 	content:none;
+
+}
+#myNavbar .navbar-right>li
+{
+	margin-left:15px;
+}
+#myNavbar .navbar-right>li:first-child>a
+{
+	padding-right:5px;
+}
+#myNavbar .navbar-right>li:nth-child(2)>a
+{
+	padding-left:7px;
+}
+#myNavbar li:hover
+{
+	border-right: 5px solid #0D4F7C;
+	border-bottom: none;
+	text-align: right;
+}
+.fish img
+{
+	margin-right: -60px; 
+	width:150px; 
+}
+footer>div>div>div:first-child
+{
+	border-right: none;
+	margin-top: 25px;
+	text-align: center;
+}
+footer .customerSupport
+{
+	margin:25px 0px 0px 30px;
+	text-align: center;
+}
+button,#healthyEating>a
+{
+	padding: 7px 50px;
+	font-size: 12pt;
+}
+}
+@media screen and (max-width:630px)
+{
+.carouselText h1
+{
+	font-weight: 600;
+    line-height: 6px;
+    font-size: 18px;
+}
+.carouselText button
+{
+	padding: 5px ;
+	font-size: 10pt;
+	margin-top: 2px;
+}
+#counter
+{
+	padding: 70px 0px;
+}
+#counter h1
+{
+	font-weight: 600;
+    line-height: 38px;
+    font-size: 40px;
+    color: white;
+}
+.fish img
+{
+	margin-right: -60px; 
+	width:90px; 
+}
+.fishText p
+{
+	font-size: 10pt;
+	margin: 10px 0px 10px -10px;
+}
+}
+@media screen and (max-width:465px)
+{
+.carouselText h1
+{
+	font-weight: 600;
+    line-height: 2px;
+    font-size: 15px;
+}
+.carouselText button
+{
+	padding: 3px ;
+	font-size: 8pt;
+}
+#counter
+{
+	padding: 50px 0px;
+}
+#counter h1
+{
+	font-weight: 600;
+    line-height: 38px;
+    font-size: 30px;
+    color: white;
+}
+.fish img
+{
+	margin-right: 0px; 
+	width:90px; 
+}
+.fishText p
+{
+	margin: 10px 0px;
+}
+}
