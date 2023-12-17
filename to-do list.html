@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <!-- Bootstrap Icons CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
+    <style>
+      body {
+        font-family: Georgia, sans-serif;
+        background-color: #c6f7ff;
+
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      #app-container {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+        flex-grow: 1;
+      }
+
+      #progress-bar-container {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .progress-stacked {
+        
+        background-color: #e9ecef;
+
+      }
+
+      .progress-bar-primary {
+        background-color: #007bff;
+      }
+
+      .progress-bar-orange {
+        background-color: #ffc107;
+      }
+
+      .progress-bar-success {
+        background-color: #2ec96a;
+      }
+
+      .progress-bar-danger {
+        background-color: #dc3545;
+      }
+
+      .progress-bar-striped-animated {
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          rgba(0, 0, 0, 0.1) 10px,
+          rgba(0, 0, 0, 0.1) 20px
+        );
+      }
+
+      #todo-list {
+        flex-grow: 1;
+        max-height: 98vh;
+        overflow-y: auto;
+        width: 100%;
+
+      }
+
+      .todo-card {
+        width: 100%;
+        position: relative;
+        margin-bottom: 10px;
+        border-width: 3px;
+        border-style: solid;
+        border-radius: 8px;
+        background-color: #ffffff;
+        
+      }
+
+      .priority-dropdown {
+        width: 100%;
+      }
+
+      .delete-icon {
+        cursor: pointer;
+        color: #dc3545;
+      }
+
+      #todo-form {
+        max-width: 400px;
+        width: 100%;
+        background-color: #41daeb;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar-container">
+      <div class="progress progress-stacked">
+        <div
+          id="progress-todo"
+          class="progress-bar progress-bar-primary progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 0"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"></div>
+        <div
+          id="progress-in-progress"
+          class="progress-bar progress-bar-orange progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 0"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"></div>
+        <div
+          id="progress-completed"
+          class="progress-bar progress-bar-success progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 0"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"></div>
+        <div
+          id="progress-stuck"
+          class="progress-bar progress-bar-danger progress-bar-striped progress-bar-animated"
+          role="progressbar"
+          style="width: 0"
+          aria-valuenow="0"
+          aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+    </div>
+
+    <div id="app-container">
+      <div id="todo-form" class="container">
+        <h2 class="mb-4">To-Do List</h2>
+        <form id="addTodoForm">
+          <div class="form-group">
+            <label for="work">Work to be achieved:</label>
+            <textarea
+              class="form-control"
+              id="work"
+              rows="3"
+              required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline">Deadline:</label>
+            <input type="date" class="form-control" id="deadline" required />
+          </div>
+
+          <div class="form-group">
+            <label for="labels">Labels:</label>
+            <input type="text" class="form-control" id="labels" />
+          </div>
+
+          <div class="form-group">
+            <label for="priority">Priority:</label>
+            <select class="form-control" id="priority">
+              <option value="To be done">To be done</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+              <option value="Stuck">Stuck</option>
+            </select>
+          </div>
+
+          <button type="button" class="btn btn-primary" onclick="addTodo()">
+            Add To-Do
+          </button>
+        </form>
+      </div>
+
+      <div id="todo-list" class="container"></div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+      // Array to store the todo list
+      let todoList = []
+
+      function addTodo() {
+        const work = document.getElementById("work").value
+        const deadline = document.getElementById("deadline").value
+        const labelsInput = document.getElementById("labels").value
+        const priority = document.getElementById("priority").value
+
+        // Split labels by comma and remove leading/trailing whitespaces
+        const labels = labelsInput.split(",").map((label) => label.trim())
+
+        // Create a new todo object
+        const todo = {
+          id: new Date().getTime(), // Assign a unique id (timestamp)
+          task: work,
+          deadline: deadline,
+          priority: priority,
+          labels: labels,
+        }
+
+        // Add the todo object to the array
+        todoList.push(todo)
+
+        // Sort the todo list based on deadline and ID
+        todoList.sort((a, b) => {
+          const dateComparison = new Date(a.deadline) - new Date(b.deadline)
+          return dateComparison === 0 ? a.id - b.id : dateComparison
+        })
+
+        // Clear the form fields
+        document.getElementById("work").value = ""
+        document.getElementById("deadline").value = ""
+        document.getElementById("labels").value = ""
+        document.getElementById("priority").value = "To be done"
+
+        // Render the updated todo list and progress bar
+        renderProgressBar()
+        renderTodoList()
+      }
+
+      function removeTodo(id) {
+        // Remove the todo with the given id from the array
+        todoList = todoList.filter((todo) => todo.id !== id)
+
+        // Render the updated todo list and progress bar
+        renderProgressBar()
+        renderTodoList()
+      }
+
+      function renderTodoList() {
+        const todoListContainer = document.getElementById("todo-list")
+        todoListContainer.innerHTML = ""
+
+        // Loop through the todo list and create cards
+        todoList.forEach((todo) => {
+          const todoCard = document.createElement("div")
+          todoCard.classList.add("card", "todo-card", "px-2", "m-1")
+
+          const rowContent = document.createElement("div")
+          rowContent.classList.add("row", "pt-2")
+
+          const colContent = document.createElement("div")
+          colContent.classList.add("col-10")
+          colContent.innerHTML = `<h5 class="card-title">${todo.task}</h5>`
+          rowContent.appendChild(colContent)
+
+          const colPriority = document.createElement("div")
+          colPriority.classList.add("col-2")
+          colPriority.innerHTML = `<select class="custom-select priority-dropdown">
+                    <option value="To be done" ${
+                      todo.priority === "To be done" ? "selected" : ""
+                    }>To be done</option>
+                    <option value="In Progress" ${
+                      todo.priority === "In Progress" ? "selected" : ""
+                    }>In Progress</option>
+                    <option value="Completed" ${
+                      todo.priority === "Completed" ? "selected" : ""
+                    }>Completed</option>
+                    <option value="Stuck" ${
+                      todo.priority === "Stuck" ? "selected" : ""
+                    }>Stuck</option>
+                </select>`
+          colPriority.addEventListener("change", function () {
+            updatePriority(todo.id, this.value)
+          })
+          rowContent.appendChild(colPriority)
+
+          todoCard.appendChild(rowContent)
+
+          const rowLabels = document.createElement("div")
+          rowLabels.classList.add("row", "pb-2", "labels-container")
+
+          const colLabels = document.createElement("div")
+          colLabels.classList.add("col-4")
+          const todoLabels = document.createElement("div")
+          todo.labels.forEach((label) => {
+            const labelBadge = document.createElement("span")
+            labelBadge.classList.add("badge", "badge-secondary", "px-1")
+            labelBadge.textContent = label
+            todoLabels.appendChild(labelBadge)
+          })
+          colLabels.appendChild(todoLabels)
+          rowLabels.appendChild(colLabels)
+
+          const colDeleteIcon = document.createElement("div")
+          colDeleteIcon.classList.add("col-4", "text-center")
+          colDeleteIcon.innerHTML = `<button class="btn brn-danger delete-icon">
+                <i class="bi bi-trash"></i>
+            </button>`
+          colDeleteIcon.addEventListener("click", function () {
+            removeTodo(todo.id)
+          })
+          rowLabels.appendChild(colDeleteIcon)
+
+          const colDeadline = document.createElement("div")
+          colDeadline.classList.add("col-4", "text-right")
+          const todoDeadline = document.createElement("p")
+          todoDeadline.classList.add("card-text", "text-muted")
+          todoDeadline.textContent = `Deadline: ${todo.deadline}`
+          colDeadline.appendChild(todoDeadline)
+          rowLabels.appendChild(colDeadline)
+
+          todoCard.appendChild(rowLabels)
+
+          // Set border color based on priority
+          switch (todo.priority) {
+            case "To be done":
+              todoCard.style.borderColor = "#007bff" // Bootstrap Primary Blue
+              break
+            case "In Progress":
+              todoCard.style.borderColor = "#ffc107" // Orange
+              break
+            case "Completed":
+              todoCard.style.borderColor = "#28a745" // Bootstrap Success Green
+              break
+            case "Stuck":
+              todoCard.style.borderColor = "#dc3545" // Bootstrap Danger Red
+              break
+            default:
+              break
+          }
+
+          todoListContainer.appendChild(todoCard)
+        })
+      }
+
+      function renderProgressBar() {
+        const totalTasks = todoList.length
+        const todoCount = todoList.filter(
+          (todo) => todo.priority === "To be done"
+        ).length
+        const inProgressCount = todoList.filter(
+          (todo) => todo.priority === "In Progress"
+        ).length
+        const completedCount = todoList.filter(
+          (todo) => todo.priority === "Completed"
+        ).length
+        const stuckCount = todoList.filter(
+          (todo) => todo.priority === "Stuck"
+        ).length
+
+        const todoPercentage = (todoCount / totalTasks) * 100
+        const inProgressPercentage = (inProgressCount / totalTasks) * 100
+        const completedPercentage = (completedCount / totalTasks) * 100
+        const stuckPercentage = (stuckCount / totalTasks) * 100
+
+        document.getElementById(
+          "progress-todo"
+        ).style.width = `${todoPercentage}%`
+        document
+          .getElementById("progress-todo")
+          .setAttribute("aria-valuenow", todoPercentage.toFixed(2))
+
+        document.getElementById(
+          "progress-in-progress"
+        ).style.width = `${inProgressPercentage}%`
+        document
+          .getElementById("progress-in-progress")
+          .setAttribute("aria-valuenow", inProgressPercentage.toFixed(2))
+
+        document.getElementById(
+          "progress-completed"
+        ).style.width = `${completedPercentage}%`
+        document
+          .getElementById("progress-completed")
+          .setAttribute("aria-valuenow", completedPercentage.toFixed(2))
+
+        document.getElementById(
+          "progress-stuck"
+        ).style.width = `${stuckPercentage}%`
+        document
+          .getElementById("progress-stuck")
+          .setAttribute("aria-valuenow", stuckPercentage.toFixed(2))
+      }
+
+      function updatePriority(id, newPriority) {
+        const todoIndex = todoList.findIndex((todo) => todo.id === id)
+
+        if (todoIndex !== -1) {
+          todoList[todoIndex].priority = newPriority
+        }
+
+        // Render the updated todo list and progress bar
+        renderProgressBar()
+        renderTodoList()
+      }
+    </script>
+  </body>
+</html>
